@@ -1,3 +1,4 @@
+import axios from 'axios';
 import  { defineStore} from 'pinia'
 
 export const useTodoListStore = defineStore('todoList', {
@@ -15,10 +16,17 @@ export const useTodoListStore = defineStore('todoList', {
             })
         },
         toggleCompleted(idToFind){
-            
             const todo = this.todoList.find((obj) => obj.id === idToFind)
             if(todo){
                 todo.completed = !todo.completed
+            }
+        },
+        async getTodo (){
+            const response = await axios.get('url com laravel proximo commit ')
+            try{
+                this.todoList = await response.data.contatos
+            }catch (err){
+                console.log('Error -> ' + err);
             }
         }
     }
